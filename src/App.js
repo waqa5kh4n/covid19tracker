@@ -47,13 +47,62 @@ function App() {
         <Card.Img variant="top" src={data.countryInfo.flag}></Card.Img>
         <Card.Body>
           <Card.Title>{data.country}</Card.Title>
-          <Card.Text>Cases {data.cases}</Card.Text>
-          <Card.Text>Deaths {data.deaths}</Card.Text>
-          <Card.Text>Recovered {data.recovered}</Card.Text>
-          <Card.Text>Today's cases {data.todaysCases}</Card.Text>
-          <Card.Text>Today's deaths {data.todayDeaths}</Card.Text>
-          <Card.Text>Active {data.active}</Card.Text>
-          <Card.Text>Critical {data.critical}</Card.Text>
+          <Card.Text>
+            <NumberFormat
+              value={data.cases}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix="Cases "
+            />
+          </Card.Text>
+          <Card.Text>
+            <NumberFormat
+              value={data.deaths}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix="Deaths "
+            />
+          </Card.Text>
+          <Card.Text>
+            <NumberFormat
+              value={data.recovered}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix="Recovered "
+            />
+          </Card.Text>
+          <Card.Text>
+            <NumberFormat
+              value={data.todayCases}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix="Today's cases "
+            />
+          </Card.Text>
+          <Card.Text>
+            <NumberFormat
+              value={data.todayDeaths}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix="Today's deaths "
+            />
+          </Card.Text>
+          <Card.Text>
+            <NumberFormat
+              value={data.active}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix="Active "
+            />
+          </Card.Text>
+          <Card.Text>
+            <NumberFormat
+              value={data.critical}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix="Critical "
+            />
+          </Card.Text>
         </Card.Body>
       </Card>
     );
