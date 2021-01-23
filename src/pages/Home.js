@@ -6,12 +6,13 @@ import axios from "axios";
 import Columns from "react-columns";
 import Form from "react-bootstrap/Form";
 import NumberFormat from "react-number-format";
+import GridLoader from "react-spinners/GridLoader";
 
 function Home() {
   const [latest, setLatest] = useState([]);
   const [results, setResults] = useState([]);
   const [searchCountries, setSearchCountries] = useState("");
-
+const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
       .all([
@@ -21,6 +22,7 @@ function Home() {
       .then((responseArr) => {
         setLatest(responseArr[0].data);
         setResults(responseArr[1].data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -121,6 +123,7 @@ function Home() {
 
   return (
     <div className="App">
+      <GridLoader size={15} margin={20} color={"#123abc"} loading={loading} />
       <CardDeck>
         <Card
           bg="secondary"
