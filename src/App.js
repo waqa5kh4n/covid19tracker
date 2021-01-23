@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Columns from "react-columns";
 import Form from "react-bootstrap/Form";
+import NumberFormat from "react-number-format";
 
 function App() {
   const [latest, setLatest] = useState([]);
@@ -25,7 +26,7 @@ function App() {
         console.log(err);
       });
   }, []);
-  
+
   const date = new Date(parseInt(latest.updated));
   const lastUpdated = date.toString();
   const filterCountries = results.filter((item) => {
@@ -80,7 +81,13 @@ function App() {
         >
           <Card.Body>
             <Card.Title>Cases</Card.Title>
-            <Card.Text>{latest.cases}</Card.Text>
+            <Card.Text>
+              <NumberFormat
+                value={latest.cases}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small>Last updated {lastUpdated}</small>
@@ -94,7 +101,13 @@ function App() {
         >
           <Card.Body>
             <Card.Title>Deaths</Card.Title>
-            <Card.Text>{latest.deaths}</Card.Text>
+            <Card.Text>
+              <NumberFormat
+                value={latest.deaths}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small>Last updated {lastUpdated}</small>
@@ -108,7 +121,13 @@ function App() {
         >
           <Card.Body>
             <Card.Title>Recovered</Card.Title>
-            <Card.Text>{latest.recovered}</Card.Text>
+            <Card.Text>
+              <NumberFormat
+                value={latest.recovered}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small>Last updated {lastUpdated}</small>
