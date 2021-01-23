@@ -7,12 +7,16 @@ import Columns from "react-columns";
 import Form from "react-bootstrap/Form";
 import NumberFormat from "react-number-format";
 import GridLoader from "react-spinners/GridLoader";
+import Toggle from "react-toggle";
+import "react-toggle/style.css";
 
 function Home() {
   const [latest, setLatest] = useState([]);
   const [results, setResults] = useState([]);
   const [searchCountries, setSearchCountries] = useState("");
-const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [darkTheme, setDarkTheme] = useState(false);
+
   useEffect(() => {
     axios
       .all([
@@ -41,8 +45,8 @@ const [loading, setLoading] = useState(true);
     return (
       <Card
         key={i}
-        bg="light"
-        text="dark"
+        bg={darkTheme ? "dark" : "light"}
+        text={ darkTheme ? "light" : "dark"}
         className="text-center"
         style={{ margin: "10px" }}
       >
@@ -121,9 +125,24 @@ const [loading, setLoading] = useState(true);
     },
   ];
 
+  const handleDarkTheme = () => {
+    setDarkTheme(!darkTheme);
+  };
+
   return (
-    <div className="App">
+    <div style={{
+      backgroundColor: darkTheme ? "black" : "white", 
+    color : darkTheme ? "white" : "black"}}>
       <GridLoader size={15} margin={20} color={"#123abc"} loading={loading} />
+      <br></br>
+      <Toggle
+        defaultChecked={false}
+        icons={{
+          checked: "🌙",
+          unchecked: "🌞",
+        }}
+        onChange={handleDarkTheme}
+      />
       <CardDeck>
         <Card
           bg="secondary"
