@@ -5,44 +5,55 @@ import ReactApexChart from "react-apexcharts";
 
 function Graph() {
   const [casesReported, setCases] = useState([]);
+  const [countryReported, setCountry] = useState([]);
   const [deathReported, setDeath] = useState([]);
   const [recoveredReported, setRecovered] = useState([]);
-  const [populateDate, setDate] = useState([]);
+  //const [populateDate, setDate] = useState([]);
 
   useEffect(() => {
+    let casesRep = [];
+    let countryRep = [];
+    let deathRep = [];
+    let recoveredRep = [];
+
     axios
-      .get("https://disease.sh/v3/covid-19/historical/USA?lastdays=5")
+      .get("https://disease.sh/v3/covid-19/countries")
       .then((res) => {
-        console.log("cases " + JSON.stringify(res.data.timeline.cases));
-        setCases(res.data.timeline.cases);
+        //console.log("cases " + JSON.stringify(res.data[0].cases));
+        //console.log("country " + JSON.stringify(res.data[0].country));
+        for (const dataObj of res.data) {
+          casesRep.push(parseInt(dataObj.cases));
+          countryRep.push(dataObj.country);
+          deathRep.push(parseInt(dataObj.deaths));
+          recoveredRep.push(parseInt(dataObj.recovered))
 
-        console.log("deaths " + JSON.stringify(res.data.timeline.deaths));
-        setDeath(res.data.timeline.deaths);
-
-        console.log("recovered " + JSON.stringify(res.data.timeline.recovered));
-        setRecovered(res.data.timeline.recovered);
+          //console.log("each cases : "+dataObj.cases);
+          //console.log("each country : "+dataObj.country);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+    //  console.log(casesRep, countryRep);
+    setCases(casesRep);
+    setCountry(countryRep);
+    setDeath(deathRep);
+    setRecovered(recoveredRep);
 
-  console.log("after cases : " + JSON.stringify(casesReported));
-  console.log("after deaths : " + JSON.stringify(deathReported));
-  console.log("after recovered : " + JSON.stringify(recoveredReported));
+  }, []);
 
   const series = [
     {
       name: "cases",
-      data: [11, 32, 45, 32, 34, 52, 41],
+      data: casesReported,
     },
     {
       name: "deaths",
-      data: [11, 32, 45, 32, 34, 52, 41],
+      data: deathReported,
     },
     {
       name: "recovered",
-      data: [111, 32, 45, 32, 34, 52, 41],
+      data: recoveredReported,
     },
   ];
   const options = {
@@ -57,21 +68,8 @@ function Graph() {
       curve: "smooth",
     },
     xaxis: {
-      type: "datetime",
-      categories: [
-        "1/22/20",
-        "2/1/20",
-        "2/15/20",
-        "3/1/20",
-        "3/15/20",
-        "4/1/20",
-        "5/15/20",
-      ],
-    },
-    tooltip: {
-      x: {
-        format: "dd/MM/yy HH:mm",
-      },
+      type: "text",
+      categories: countryReported,
     },
   };
 
