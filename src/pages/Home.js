@@ -130,7 +130,7 @@ function Home() {
   };
 
   return (
-    <div style={{
+    <div className="container" style={{
       backgroundColor: darkTheme ? "black" : "white", 
     color : darkTheme ? "white" : "black"}}>
       <GridLoader size={15} margin={20} color={"#123abc"} loading={loading} />
