@@ -5,13 +5,17 @@ import ReactApexChart from "react-apexcharts";
 function Graph() {
   const series = [
     {
-      name: "series1",
+      name: "cases",
       data: [31, 40, 28, 51, 42, 109, 100],
     },
     {
-      name: "series2",
+      name: "deaths",
       data: [11, 32, 45, 32, 34, 52, 41],
     },
+    {
+        name: "recovered",
+        data: [11, 32, 45, 32, 34, 52, 41],
+      },
   ];
   const options = {
     chart: {
