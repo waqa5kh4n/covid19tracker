@@ -1,21 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
+import axios from "axios";
 import ReactApexChart from "react-apexcharts";
 
 function Graph() {
+  const [casesReported, setCases] = useState([]);
+  const [deathReported, setDeath] = useState([]);
+  const [recoveredReported, setRecovered] = useState([]);
+  const [populateDate, setDate] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://disease.sh/v3/covid-19/historical/USA?lastdays=5")
+      .then((res) => {
+        console.log("cases " + JSON.stringify(res.data.timeline.cases));
+        setCases(res.data.timeline.cases);
+
+        console.log("deaths " + JSON.stringify(res.data.timeline.deaths));
+        setDeath(res.data.timeline.deaths);
+
+        console.log("recovered " + JSON.stringify(res.data.timeline.recovered));
+        setRecovered(res.data.timeline.recovered);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  console.log("after cases : " + JSON.stringify(casesReported));
+  console.log("after deaths : " + JSON.stringify(deathReported));
+  console.log("after recovered : " + JSON.stringify(recoveredReported));
+
   const series = [
     {
       name: "cases",
-      data: [31, 40, 28, 51, 42, 109, 100],
+      data: [11, 32, 45, 32, 34, 52, 41],
     },
     {
       name: "deaths",
       data: [11, 32, 45, 32, 34, 52, 41],
     },
     {
-        name: "recovered",
-        data: [11, 32, 45, 32, 34, 52, 41],
-      },
+      name: "recovered",
+      data: [111, 32, 45, 32, 34, 52, 41],
+    },
   ];
   const options = {
     chart: {
@@ -31,13 +59,13 @@ function Graph() {
     xaxis: {
       type: "datetime",
       categories: [
-        "2018-09-19T00:00:00.000Z",
-        "2018-09-19T01:30:00.000Z",
-        "2018-09-19T02:30:00.000Z",
-        "2018-09-19T03:30:00.000Z",
-        "2018-09-19T04:30:00.000Z",
-        "2018-09-19T05:30:00.000Z",
-        "2018-09-19T06:30:00.000Z",
+        "1/22/20",
+        "2/1/20",
+        "2/15/20",
+        "3/1/20",
+        "3/15/20",
+        "4/1/20",
+        "5/15/20",
       ],
     },
     tooltip: {
