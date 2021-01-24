@@ -8,7 +8,6 @@ function Graph() {
   const [countryReported, setCountry] = useState([]);
   const [deathReported, setDeath] = useState([]);
   const [recoveredReported, setRecovered] = useState([]);
-  //const [populateDate, setDate] = useState([]);
 
   useEffect(() => {
     let casesRep = [];
@@ -75,6 +74,7 @@ function Graph() {
 
   return (
     <div style={{ background: "white", textAlign: "center" }}>
+      <br></br>
       <h2>Graph</h2>
       <ReactApexChart
         options={options}
