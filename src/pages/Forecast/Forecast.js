@@ -8,7 +8,6 @@ const Forecast = () => {
   let [responseObj, setResponseObj] = useState({});
   let [error, setError] = useState(false);
   let [loading, setLoading] = useState(false);
-  const uriEncodedCity = encodeURIComponent(city);
 
  
   function getForecast(e) {
