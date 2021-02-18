@@ -12,8 +12,11 @@ function Nav() {
         <Link style={{ color: "white", textDecoration: "none", marginTop:"10px", marginRight: "50px" }} to="/graph">
           <li> Graph </li>
         </Link>
-        <Link style={{ color: "white", textDecoration: "none", marginTop:"10px" }} to="/about">
+        <Link style={{ color: "white", textDecoration: "none", marginTop:"10px", marginRight: "50px"  }} to="/about">
           <li> About </li>
+        </Link>
+        <Link style={{ color: "white", textDecoration: "none", marginTop:"10px" }} to="/forecast">
+          <li> Forecast </li>
         </Link>
       </ul>
     </nav>
