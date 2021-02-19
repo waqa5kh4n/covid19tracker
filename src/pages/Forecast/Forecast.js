@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Conditions from '../Conditions/Conditions';
 import classes from './Forecast.module.css';
+import { Button } from 'react-bootstrap';
+
 
 const Forecast = () => {
   let [city, setCity] = useState('');
@@ -71,6 +73,7 @@ const Forecast = () => {
           />
           Fahrenheit
         </label><br></br>
+        
         <label className={classes.Radio}>
           <input
             type="radio"
@@ -80,10 +83,11 @@ const Forecast = () => {
             onChange={(e) => setUnit(e.target.value)}
           />
           Celcius
-        </label>
-        <button className={classes.Button} type="submit">
+        </label><br></br>
+
+        <Button type="submit">
           Get Forecast
-        </button>
+        </Button>
       </form>
       <Conditions
               responseObj={responseObj}
