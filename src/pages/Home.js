@@ -95,7 +95,7 @@ function Home() {
           </Card.Text>
           <Card.Text>
             <NumberFormat
-              value={data.active}
+              // value={data.active}
               displayType={"text"}
               thousandSeparator={true}
               prefix="Active "
@@ -156,7 +156,7 @@ function Home() {
               <NumberFormat
                 value={latest.cases}
                 displayType={"text"}
-                thousandSeparator={true}
+                // thousandSeparator={true}
               />
             </Card.Text>
           </Card.Body>
